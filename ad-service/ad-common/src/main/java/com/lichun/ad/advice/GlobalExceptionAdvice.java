@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 统一异常处理
+ */
 @RestControllerAdvice
 public class GlobalExceptionAdvice {
     @ExceptionHandler(value = AdException.class)
