@@ -27,3 +27,4 @@
 hs_err_pid*
 
 /.idea/
+/ad-service/ad-sponsor/target/classes/application.yml
