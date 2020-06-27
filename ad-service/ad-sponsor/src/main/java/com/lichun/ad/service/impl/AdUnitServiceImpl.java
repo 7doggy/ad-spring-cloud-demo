@@ -3,14 +3,17 @@ package com.lichun.ad.service.impl;
 import com.lichun.ad.constant.Constants;
 import com.lichun.ad.dao.AdPlanRepository;
 import com.lichun.ad.dao.AdUnitRepository;
+import com.lichun.ad.dao.CreativeRepository;
 import com.lichun.ad.dao.unit_condition.AdUnitDistrictRepository;
 import com.lichun.ad.dao.unit_condition.AdUnitItRepository;
 import com.lichun.ad.dao.unit_condition.AdUnitKeywordRepository;
+import com.lichun.ad.dao.unit_condition.CreativeUnitRepository;
 import com.lichun.ad.entity.AdPlan;
 import com.lichun.ad.entity.AdUnit;
 import com.lichun.ad.entity.unit_condition.AdUnitDistrict;
 import com.lichun.ad.entity.unit_condition.AdUnitIt;
 import com.lichun.ad.entity.unit_condition.AdUnitKeyword;
+import com.lichun.ad.entity.unit_condition.CreativeUnit;
 import com.lichun.ad.exception.AdException;
 import com.lichun.ad.service.IAdUnitService;
 import com.lichun.ad.vo.*;
@@ -31,16 +34,21 @@ public class AdUnitServiceImpl implements IAdUnitService {
     private AdUnitKeywordRepository unitKeywordRepository;
     private AdUnitItRepository unitItRepository;
     private AdUnitDistrictRepository unitDistrictRepository;
+    private CreativeRepository creativeRepository;
+    private CreativeUnitRepository creativeUnitRepository;
 
     @Autowired
     public AdUnitServiceImpl(AdPlanRepository planRepository, AdUnitRepository unitRepository,
                              AdUnitKeywordRepository unitKeywordRepository, AdUnitItRepository unitItRepository,
-                             AdUnitDistrictRepository unitDistrictRepository) {
+                             AdUnitDistrictRepository unitDistrictRepository, CreativeRepository creativeRepository,
+                             CreativeUnitRepository creativeUnitRepository) {
         this.planRepository = planRepository;
         this.unitRepository = unitRepository;
         this.unitKeywordRepository = unitKeywordRepository;
         this.unitItRepository = unitItRepository;
         this.unitDistrictRepository = unitDistrictRepository;
+        this.creativeRepository = creativeRepository;
+        this.creativeUnitRepository = creativeUnitRepository;
     }
 
     @Override
@@ -128,12 +136,40 @@ public class AdUnitServiceImpl implements IAdUnitService {
         return new AdUnitDistriceResponse(ids);
     }
 
+    @Override
+    public CreativeUnitResponse createCreativeUnit(CreativeUnitRequest request) throws AdException {
+        List<Long> unitIds = request.getUnitItems().stream()
+                .map(CreativeUnitRequest.CreativeUnitItem::getUnitId)
+                .collect(Collectors.toList());
+        List<Long> creativeIds = request.getUnitItems().stream()
+                .map(CreativeUnitRequest.CreativeUnitItem::getCreativeId)
+                .collect(Collectors.toList());
+        if (!(isRelatedUnitExist(unitIds) && isRelatedCreativeExist(creativeIds))) {
+            throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
+        List<CreativeUnit> creativeUnits = new ArrayList<>();
+        request.getUnitItems().forEach(i -> creativeUnits.add(
+                new CreativeUnit(i.getCreativeId(), i.getUnitId())
+        ));
+        List<Long> ids = creativeUnitRepository.saveAll(creativeUnits).stream()
+                .map(CreativeUnit::getId).collect(Collectors.toList());
+        return new CreativeUnitResponse(ids);
+    }
+
     private boolean isRelatedUnitExist(List<Long> unitIds) {
         if (CollectionUtils.isEmpty(unitIds)) {
             return false;
         }
         return unitRepository.findAllById(unitIds).size() ==
                 new HashSet<>(unitIds).size();
+    }
+
+    private boolean isRelatedCreativeExist(List<Long> creativeIds) {
+        if (CollectionUtils.isEmpty(creativeIds)) {
+            return false;
+        }
+        return creativeRepository.findAllById(creativeIds).size()
+                == new HashSet<>(creativeIds).size();
     }
 
 }
