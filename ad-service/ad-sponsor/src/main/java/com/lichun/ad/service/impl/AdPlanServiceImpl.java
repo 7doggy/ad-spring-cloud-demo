@@ -12,13 +12,17 @@ import com.lichun.ad.utils.CommonUtils;
 import com.lichun.ad.vo.AdPlanGetRequest;
 import com.lichun.ad.vo.AdPlanRequest;
 import com.lichun.ad.vo.AdPlanResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
+@Service
 public class AdPlanServiceImpl implements IAdPlanService {
     private AdUserRepository userRepository;
     private AdPlanRepository planRepository;

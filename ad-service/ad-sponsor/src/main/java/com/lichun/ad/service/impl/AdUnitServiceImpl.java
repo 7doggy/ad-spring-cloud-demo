@@ -14,12 +14,16 @@ import com.lichun.ad.entity.unit_condition.AdUnitKeyword;
 import com.lichun.ad.exception.AdException;
 import com.lichun.ad.service.IAdUnitService;
 import com.lichun.ad.vo.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
+@Service
 public class AdUnitServiceImpl implements IAdUnitService {
 
     private AdPlanRepository planRepository;

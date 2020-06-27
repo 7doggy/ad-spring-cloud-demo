@@ -45,7 +45,7 @@ public class Creative {
     private Integer auditStatus;
     @Basic
     @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    private Long userId;
     @Basic
     @Column(name = "url", nullable = false)
     private String url;
