@@ -28,3 +28,9 @@ hs_err_pid*
 
 /.idea/
 /ad-service/ad-sponsor/target/classes/application.yml
+/ad-service/ad-common/ad-common.iml
+/ad-eureka/ad-eureka.iml
+/ad-gateway/ad-gateway.iml
+/ad-service/ad-service.iml
+/ad-service/ad-sponsor/ad-sponsor.iml
+/ad-spring-cloud.iml
