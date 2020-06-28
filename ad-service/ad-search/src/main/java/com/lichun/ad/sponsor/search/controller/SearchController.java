@@ -3,6 +3,7 @@ package com.lichun.ad.sponsor.search.controller;
 import com.alibaba.fastjson.JSON;
 import com.lichun.ad.sponsor.annotation.IgnoreResponseAdvice;
 import com.lichun.ad.sponsor.exception.AdException;
+import com.lichun.ad.sponsor.search.client.SponsorClient;
 import com.lichun.ad.sponsor.search.client.vo.AdPlan;
 import com.lichun.ad.sponsor.search.client.vo.AdPlanGetRequest;
 import com.lichun.ad.sponsor.vo.CommonResponse;
@@ -20,10 +21,22 @@ import java.util.List;
 public class SearchController {
 
     private RestTemplate restTemplate;
+    private SponsorClient sponsorClient;
 
     @Autowired
-    public SearchController(RestTemplate restTemplate) {
+    public SearchController(RestTemplate restTemplate, SponsorClient sponsorClient) {
         this.restTemplate = restTemplate;
+        this.sponsorClient = sponsorClient;
+    }
+
+    @IgnoreResponseAdvice
+    @PostMapping("/getAdPlans")
+    public CommonResponse<List<AdPlan>> getAdPlans(
+            @RequestBody AdPlanGetRequest request
+    ) throws AdException {
+        log.info("ad-search:getAdPlans -> {}",
+                JSON.toJSONString(request));
+        return sponsorClient.getAdPlans(request);
     }
 
     @IgnoreResponseAdvice
