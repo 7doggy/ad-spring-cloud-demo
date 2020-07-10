@@ -12,6 +12,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * 广告检索系统
+ */
 @EnableFeignClients
 @EnableEurekaClient
 @EnableHystrix
