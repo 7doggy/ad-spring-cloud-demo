@@ -34,3 +34,5 @@ hs_err_pid*
 /ad-service/ad-service.iml
 /ad-service/ad-sponsor/ad-sponsor.iml
 /ad-spring-cloud.iml
+/ad-service/ad-sponsor/target/classes/ad-sponsor.sql
+/ad-service/ad-search/target/classes/application.yml
