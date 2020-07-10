@@ -1,6 +1,6 @@
-package com.lichun.ad.sponsor.search.index.adunit;
+package com.lichun.ad.search.index.adunit;
 
-import com.lichun.ad.sponsor.search.index.adplan.AdPlanObject;
+import com.lichun.ad.search.index.adplan.AdPlanObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

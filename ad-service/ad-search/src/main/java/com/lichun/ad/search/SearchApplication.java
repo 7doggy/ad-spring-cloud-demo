@@ -1,4 +1,4 @@
-package com.lichun.ad.sponsor.search;
+package com.lichun.ad.search;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

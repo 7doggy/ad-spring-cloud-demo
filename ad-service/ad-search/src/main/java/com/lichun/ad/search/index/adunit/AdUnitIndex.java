@@ -1,6 +1,6 @@
-package com.lichun.ad.sponsor.search.index.adplan;
+package com.lichun.ad.search.index.adunit;
 
-import com.lichun.ad.sponsor.search.index.IndexAware;
+import com.lichun.ad.search.index.IndexAware;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -9,29 +9,28 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Component
-public class AdPlanIndex implements IndexAware<Long, AdPlanObject> {
-    private static Map<Long, AdPlanObject> objectMap;
+public class AdUnitIndex implements IndexAware<Long, AdUnitObject> {
+    private static Map<Long, AdUnitObject> objectMap;
 
     static {
-        objectMap = new ConcurrentHashMap<Long, AdPlanObject>();
+        objectMap = new ConcurrentHashMap<>();
     }
-
     @Override
-    public AdPlanObject get(Long key) {
+    public AdUnitObject get(Long key) {
         return objectMap.get(key);
     }
 
     @Override
-    public void add(Long key, AdPlanObject value) {
+    public void add(Long key, AdUnitObject value) {
         log.info("before add: {}", objectMap);
         objectMap.put(key, value);
         log.info("after add: {}", objectMap);
     }
 
     @Override
-    public void update(Long key, AdPlanObject value) {
+    public void update(Long key, AdUnitObject value) {
         log.info("before update: {}", objectMap);
-        AdPlanObject oldObject = objectMap.get(key);
+        AdUnitObject oldObject = objectMap.get(key);
         if (null == oldObject) {
             objectMap.put(key, value);
         } else {
@@ -41,7 +40,7 @@ public class AdPlanIndex implements IndexAware<Long, AdPlanObject> {
     }
 
     @Override
-    public void delete(Long key, AdPlanObject value) {
+    public void delete(Long key, AdUnitObject value) {
         log.info("before delete: {}", objectMap);
         objectMap.remove(key);
         log.info("after delete: {}", objectMap);

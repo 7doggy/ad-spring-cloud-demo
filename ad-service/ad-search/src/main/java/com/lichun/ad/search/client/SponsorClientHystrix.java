@@ -1,7 +1,7 @@
-package com.lichun.ad.sponsor.search.client;
+package com.lichun.ad.search.client;
 
-import com.lichun.ad.sponsor.search.client.vo.AdPlan;
-import com.lichun.ad.sponsor.search.client.vo.AdPlanGetRequest;
+import com.lichun.ad.search.client.vo.AdPlan;
+import com.lichun.ad.search.client.vo.AdPlanGetRequest;
 import com.lichun.ad.sponsor.vo.CommonResponse;
 import org.springframework.stereotype.Component;
 

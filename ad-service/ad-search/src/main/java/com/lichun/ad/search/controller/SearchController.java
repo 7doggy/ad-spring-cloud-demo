@@ -1,11 +1,11 @@
-package com.lichun.ad.sponsor.search.controller;
+package com.lichun.ad.search.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.lichun.ad.search.client.SponsorClient;
+import com.lichun.ad.search.client.vo.AdPlan;
+import com.lichun.ad.search.client.vo.AdPlanGetRequest;
 import com.lichun.ad.sponsor.annotation.IgnoreResponseAdvice;
 import com.lichun.ad.sponsor.exception.AdException;
-import com.lichun.ad.sponsor.search.client.SponsorClient;
-import com.lichun.ad.sponsor.search.client.vo.AdPlan;
-import com.lichun.ad.sponsor.search.client.vo.AdPlanGetRequest;
 import com.lichun.ad.sponsor.vo.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +21,11 @@ import java.util.List;
 public class SearchController {
 
     private RestTemplate restTemplate;
+
     private SponsorClient sponsorClient;
 
     @Autowired
-    public SearchController(RestTemplate restTemplate,
-                            SponsorClient sponsorClient) {
+    public SearchController(RestTemplate restTemplate, SponsorClient sponsorClient) {
         this.restTemplate = restTemplate;
         this.sponsorClient = sponsorClient;
     }

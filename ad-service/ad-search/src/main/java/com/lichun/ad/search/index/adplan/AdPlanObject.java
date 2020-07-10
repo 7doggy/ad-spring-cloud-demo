@@ -1,4 +1,4 @@
-package com.lichun.ad.sponsor.search.index.adplan;
+package com.lichun.ad.search.index.adplan;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

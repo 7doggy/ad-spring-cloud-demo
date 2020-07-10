@@ -1,4 +1,4 @@
-package com.lichun.ad.sponsor.search.client.vo;
+package com.lichun.ad.search.client.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

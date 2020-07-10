@@ -1,4 +1,4 @@
-package com.lichun.ad.sponsor.search.index;
+package com.lichun.ad.search.index;
 
 public interface IndexAware<K, V> {
     V get(K key);
