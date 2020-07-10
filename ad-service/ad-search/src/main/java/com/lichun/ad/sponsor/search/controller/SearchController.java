@@ -24,7 +24,8 @@ public class SearchController {
     private SponsorClient sponsorClient;
 
     @Autowired
-    public SearchController(RestTemplate restTemplate, SponsorClient sponsorClient) {
+    public SearchController(RestTemplate restTemplate,
+                            SponsorClient sponsorClient) {
         this.restTemplate = restTemplate;
         this.sponsorClient = sponsorClient;
     }
